@@ -1,0 +1,15 @@
+AuctionsIAM:
+  Effect: Allow
+  Action:
+    - dynamodb:PutItem
+    - dynamodb:Scan
+    - dynamodb:GetItem
+    - dynamodb:UpdateItem
+    - dynamodb:Query
+  Resource:
+    - ${self:custom.AuctionsTable.arn}
+    - !Join [
+        '/',
+        [ '${self:custom.AuctionsTable.arn}' , 'index', 'statusAndEndDate']
+      ]
+    # arn:aws:dynamodb:eu-west-1:013183387992:table/AuctionsTable-dev/index/statusEndDate
